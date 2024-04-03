@@ -1,5 +1,7 @@
 function im = ifftc(ks, dim, n)
-%% ks = ifftc(im, dim, n)
+%% Centered inverse fast Fourier transform
+%  ks = ifftc(im, dim, n)
+% 
 % Performs a centered (n-point) inverse fast fourier transform along the 
 % specified dimension(s). Equivalent to performing
 %       fftshift(ifft(ifftshift(ks, dim), n, dim), dim)
@@ -24,6 +26,8 @@ function im = ifftc(ks, dim, n)
 %   Inverse fourier transformed (image-space) data. If n is not 
 %   specified, has same size as the input. Otherwise, any dimensions 
 %   included in dim have the number of points specified in n.
+%
+% See also IFFT.
 %
 %% Created 2023-10-13 Samuel Adams-Tew
 

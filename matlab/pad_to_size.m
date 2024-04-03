@@ -1,5 +1,7 @@
 function imPad = pad_to_size(im, szOut, padVal)
-%% padIm = pad_to_size(im, szOut)
+%% Pad image data
+%  padIm = pad_to_size(im, szOut)
+% 
 % Pads the input image to a given size using symmetric padding. If an odd
 % number of entries are to be added along a given dimension, the extra
 % entry is added at the front of that dimension.

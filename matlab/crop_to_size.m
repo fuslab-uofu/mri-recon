@@ -1,5 +1,7 @@
 function cropIm = crop_to_size(im, szOut)
-%% cropIm = crop_to_size(im, szOut)
+%% Crop image data
+%  cropIm = crop_to_size(im, szOut)
+% 
 % Crops the input image to the given size using symmetric cropping. If an 
 % odd number of entries are to be removed along a given dimension, the 
 % extra entry is removed from the front of that dimension. Can be used to

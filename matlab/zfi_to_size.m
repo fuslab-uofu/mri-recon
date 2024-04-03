@@ -1,5 +1,7 @@
 function imZFI = zfi_to_size(im, szOut)
-%% imZFI = zfi_to_size(im, szOut)
+%% Zero filled interpolation
+%  imZFI = zfi_to_size(im, szOut)
+%
 % Interpolates the image to the specified size using zero padding in the
 % spatial frequency domain.
 %
