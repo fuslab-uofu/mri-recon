@@ -26,58 +26,17 @@ function imZFI = zfi_to_size(im, szOut)
 %
 %% Created 2022-07-15 Samuel Adams-Tew
 
+% Get number of output dimensions
+ndim = max(ndims(im), length(szOut));
 % Get current size
-szIn = size(im);
+szIn = size(im, 1:ndim);
+% Determine which dimensions are being ZFI'd
+zfiDims = find(szIn < szOut);
 
-sourceRng = cell(1, ndims(im));
-destRng = cell(1, ndims(im));
-% Calculate padding amounts along each dimension
-for d = 1:ndims(im)
-    if length(szOut) < d
-        szOut(d) = szIn(d);
-    end
-    % Get difference between input and output size
-    diff = szOut(d) - szIn(d);
-    if diff > 0
-        % If output is longer than input, create ranges that induce padding
-        padS = ceil(diff/2);
-        padE = diff - padS;
-
-        sourceRng{d} = 1:szIn(d);
-        destRng{d} = (1 + padS):(szOut(d) - padE);
-    elseif diff < 0
-        % If output is shorter than input, create ranges that induce
-        % truncation
-        truncS = ceil(-diff/2);
-        truncE = -diff - truncS;
-
-        sourceRng{d} = (1 + truncS):(szIn(d) - truncE);
-        destRng{d} = 1:szOut(d);
-    else
-        % Create ranges that maintain size
-        sourceRng{d} = 1:szIn(d);
-        destRng{d} = 1:szOut(d);
-    end
-end
-
-% Perform FT along axes that will change size
-ksIn = im;
-for d = 1:ndims(im)
-    if szOut(d) ~= szIn(d)
-        ksIn = fftshift(fft(ifftshift(ksIn, d), [], d), d);
-    end
-end
-
-% copy values into new ZFI k-space using ranges found above
-ksOut = zeros(szOut, 'like', ksIn);
-ksOut(destRng{:}) = ksIn(sourceRng{:});
-
-% Perform IFT along axes that change size
-imZFI = ksOut;
-for d = 1:ndims(im)
-    if szOut(d) ~= szIn(d)
-        imZFI = fftshift(ifft(ifftshift(imZFI, d), [], d), d);
-    end
-end
+% Apply ZFI process
+% FT -> zero pad -> inverse
+ks = fftc(im, zfiDims);
+ksZFI = pad_to_size(ks, szOut);
+imZFI = ifftc(ksZFI, zfiDims);
 
 end
