@@ -1,6 +1,6 @@
-#DStore files
-.DS*
-._.DS*
 
-#ASV files
+.DS_Store
 *.asv
+._*
+*~
+
