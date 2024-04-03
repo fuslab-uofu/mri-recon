@@ -45,15 +45,19 @@ function imPad = pad_to_size(im, szOut, padVal)
 % ans =
 %      8     3
 %
-%% 2023-10-13 Samuel Adams-Tew
+%% Created 2023-10-13 Samuel Adams-Tew
+
+% Get number of output dimensions
+ndim = max(ndims(im), length(szOut));
 
 % Get current size 
-szIn = size(im);
+szIn = size(im, 1:ndim);
 
 sourceRng = cell(1, ndims(im));
 destRng = cell(1, ndims(im));
+
 % Calculate padding amounts along each dimension
-for d = 1:ndims(im)
+for d = 1:ndim
     if length(szOut) < d
         szOut(d) = szIn(d);
     end
