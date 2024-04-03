@@ -1,0 +1,6 @@
+#DStore files
+.DS*
+._.DS*
+
+#ASV files
+*.asv
