@@ -15,7 +15,7 @@ function kscorr = ks_drift_correction(ks, dims, options)
 % Options
 % -------
 % nBaseline : nonnegative integer
-%   Number of baseline acquisitions in time. Default is 
+%   Number of baseline acquisitions in time. Default is 5.
 % TimeDim : string
 %   Label of dimension that contains k-space samples separated in time.
 %   Default is 'REP'
