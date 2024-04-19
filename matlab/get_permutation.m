@@ -1,5 +1,7 @@
 function [permuteOrder, permuteLabels] = get_permutation(current, new, options)
-%% [permuteOrder, permuteLabels] = get_permutation(current, new, options)
+%% Get permutation order for MR dimension labels
+%  [permuteOrder, permuteLabels] = get_permutation(current, new, options)
+% 
 % Given dimension label cell arrays, determines the dimension order that
 % produces the desired ordering
 %

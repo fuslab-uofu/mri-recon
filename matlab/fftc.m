@@ -1,5 +1,7 @@
 function ks = fftc(im, dim, n)
-%% ks = fftc(im, dim, n)
+%% Centered fast Fourier transform
+%  ks = fftc(im, dim, n)
+%
 % Performs a centered (n-point) fast fourier transform along the specified
 % dimension(s). Equivalent to performing
 %       fftshift(fft(ifftshift(ks, dim), n, dim), dim)
@@ -23,6 +25,8 @@ function ks = fftc(im, dim, n)
 %   Fourier transformed data. If n is not specified, has same size as the
 %   input. Otherwise, any dimensions included in dim have the number of
 %   points specified in n.
+%
+% See also FFT.
 %
 %% Created 2023-10-13 Samuel Adams-Tew
 

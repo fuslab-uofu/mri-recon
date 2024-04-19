@@ -1,5 +1,7 @@
 function imPad = pad_to_size(im, szOut, padVal)
-%% padIm = pad_to_size(im, szOut)
+%% Pad image data
+%  padIm = pad_to_size(im, szOut)
+% 
 % Pads the input image to a given size using symmetric padding. If an odd
 % number of entries are to be added along a given dimension, the extra
 % entry is added at the front of that dimension.
@@ -43,15 +45,19 @@ function imPad = pad_to_size(im, szOut, padVal)
 % ans =
 %      8     3
 %
-%% 2023-10-13 Samuel Adams-Tew
+%% Created 2023-10-13 Samuel Adams-Tew
+
+% Get number of output dimensions
+ndim = max(ndims(im), length(szOut));
 
 % Get current size 
-szIn = size(im);
+szIn = size(im, 1:ndim);
 
 sourceRng = cell(1, ndims(im));
 destRng = cell(1, ndims(im));
+
 % Calculate padding amounts along each dimension
-for d = 1:ndims(im)
+for d = 1:ndim
     if length(szOut) < d
         szOut(d) = szIn(d);
     end
